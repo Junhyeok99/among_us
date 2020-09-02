@@ -29,7 +29,7 @@ def run():
         window.fill((255, 255, 255))
         p.events()
         update(p)
-        pygame.draw.circle(window, (0, 0, 0), (p.x, p.y), 5)
+        window.blit(p.picture, (p.x-48, p.y-31))
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()

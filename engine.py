@@ -35,6 +35,9 @@ class player:
         self.y = 150
         self.speed = SPEED
         self.done = False
+        picture=pg.image.load("character.png")
+        self.picture=pg.transform.scale(picture, (96, 62))
+       # self.picture=self.picture.convert()
 
     def events(self):
         for event in pg.event.get():
