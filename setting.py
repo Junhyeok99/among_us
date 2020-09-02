@@ -1,6 +1,7 @@
 #Player properties
 SPEED=5
-
+WIDTH = 400
+HEIGHT = 300
 #define colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
