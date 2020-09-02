@@ -39,7 +39,7 @@ class player:
     def events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                self.done = True
+                self.done = event
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_LEFT:
                     self.moveleft = True
@@ -58,3 +58,6 @@ class player:
                     self.movedown = False
                 if event.key == pg.K_UP:
                     self.moveup = False
+        if self.done:
+            pg.event.post(self.done)
+            self.done = False
