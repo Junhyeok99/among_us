@@ -26,13 +26,14 @@ def run():
     # Beginning Game Loop
     while True:
         pygame.display.update()
-        window.fill((255, 255, 255))
         p.events()
-        update(p)
-        window.blit(p.picture, (p.x-48, p.y-31))
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+        update(p)
+        window.fill((255, 0, 0))
+        pygame.draw.rect(window, (255, 255, 255), (145, 95, 110, 110))
+        pygame.draw.circle(window, (0, 0, 0), (p.x, p.y), 10)
         pygame.display.flip()
         FramePerSec.tick(FPS)
