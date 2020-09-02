@@ -1,13 +1,29 @@
 import pygame as pg
 from setting import *
+import numpy as np
+import os
+
+fname = os.path.join("map.data")
+bm = np.loadtxt(fname)
+bm = bm.reshape(300, 400)
 
 
-class start:
-    def __init__(self):
-        pg.init()
-        self.screen = pg.display.set_mode(WINDOW_SIZE)
-        pg.display.set_caption(TITLE)
-        self.clock = pg.time.Clock()
+def update(p):
+    p.events()
+    x = p.x
+    y = p.y
+    if p.moveleft and bm[p.y, p.x]:
+        p.x -= p.speed
+    if p.moveright and bm[p.y, p.x]:
+        p.x += p.speed
+    if p.movedown and bm[p.y, p.x]:
+        p.y += p.speed
+    if p.moveup and bm[p.y, p.x]:
+        p.y -= p.speed
+    if bm[p.y, p.x] == 0:
+        p.y = y
+        p.x = x
+
 
 class player:
     def __init__(self):
@@ -15,8 +31,8 @@ class player:
         self.moveright = False
         self.moveup = False
         self.movedown = False
-        self.x = 0
-        self.y = 0
+        self.x = 200
+        self.y = 150
         self.speed = SPEED
         self.done = False
 
@@ -42,27 +58,3 @@ class player:
                     self.movedown = False
                 if event.key == pg.K_UP:
                     self.moveup = False
-                    
-    def update(self):
-        if self.moveleft == True:
-            self.x -= self.speed
-        if self.moveright == True:
-            self.x += self.speed
-        if self.movedown == True:
-            self.y += self.speed
-        if self.moveup == True:
-            self.y -= self.speed
-
-
-g = start()
-p = player()
-
-while not p.done:
-    g.clock.tick(FPS)
-    g.screen.fill(WHITE)
-    p.events()
-    p.update()
-    pg.draw.circle(g.screen, GREEN, (p.x + 20, p.y + 20), 5)
-    pg.display.flip()
-
-pg.quit()
