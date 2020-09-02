@@ -16,6 +16,11 @@ def update(p):
         p.x -= p.speed
     if p.moveright and bm[p.y, p.x]:
         p.x += p.speed
+    if bm[p.y, p.x] == 0:
+        p.y = y
+        p.x = x
+    x = p.x
+    y = p.y
     if p.movedown and bm[p.y, p.x]:
         p.y += p.speed
     if p.moveup and bm[p.y, p.x]:

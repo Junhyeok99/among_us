@@ -34,6 +34,6 @@ def run():
         update(p)
         window.fill((255, 0, 0))
         pygame.draw.rect(window, (255, 255, 255), (145, 95, 110, 110))
-        pygame.draw.circle(window, (0, 0, 0), (p.x, p.y), 10)
+        window.blit(p.picture, (p.x-48, p.y-31))
         pygame.display.flip()
         FramePerSec.tick(FPS)
