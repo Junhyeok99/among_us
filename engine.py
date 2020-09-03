@@ -42,7 +42,7 @@ class Player:
         self.done = False
         self.pictures = []
         self.moving = False
-        self.isleft=False
+        self.isleft = False
         picture = pg.image.load("1.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
         picture = pg.image.load("2.png")
@@ -69,6 +69,8 @@ class Player:
                     self.movedown = True
                 if event.key == pg.K_UP:
                     self.moveup = True
+                if event.key == pg.K_SPACE:
+                    print(self.x, self.y)
             if event.type == pg.KEYUP:
                 if event.key == pg.K_LEFT:
                     self.moveleft = False
@@ -81,20 +83,22 @@ class Player:
         if self.done:
             pg.event.post(self.done)
             self.done = False
-        if self.moveleft == True or self.moveright == True or self.moveup == True or self.movedown == True:
+        if self.moveleft or self.moveright or self.moveup or self.movedown:
             self.moving = True
         else:
             self.moving = False
-        if self.moveleft==True:
-            self.isleft=True
-        if self.moveright==True:
-            self.isleft=False
+        if self.moveleft:
+            self.isleft = True
+        if self.moveright:
+            self.isleft = False
+
 
 class Object:
     def __init__(self, name, loc):
         self.name = name
         self.mission = ""
         self.location = loc
+        self.color = WHITE
 
     def interact(self):
         print(self.name, self.location)
