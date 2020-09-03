@@ -53,7 +53,7 @@ class Player:
         self.pictures = []
         self.moving = False
         self.isleft = False
-        self.missions = random.sample({1, 2, 3, 4, 5, 6}, 2)
+        self.missions = random.sample({0, 1, 2, 3, 4, 5}, 2)
         picture = pg.image.load("1.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
         picture = pg.image.load("2.png")
