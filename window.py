@@ -3,7 +3,6 @@ import pygame
 
 from pygame.locals import *
 from engine import player, update
-
 # Initialize program
 pygame.init()
 
@@ -27,6 +26,7 @@ p = player()
 
 def run():
     # Beginning Game Loop
+    count=0
     while True:
         pygame.display.update()
         p.events()
@@ -38,6 +38,12 @@ def run():
         #window.fill((255, 0, 0))
         #pygame.draw.rect(window, (255, 255, 255), (145, 95, 110, 110))
         window.blit(background_image, [200-p.x, 150-p.y])
-        window.blit(p.picture, (200-48, 150-31))
+        if p.moveleft==True:
+            window.blit(pygame.transform.flip(p.pictures[int(count/5)%6], True, False), (200-20, 150-40))
+        else:
+            window.blit(p.pictures[int(count / 5) % 6], (200 - 20, 150 - 40))
         pygame.display.flip()
         FramePerSec.tick(FPS)
+        if p.moving==True:
+            count+=1
+
