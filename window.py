@@ -40,7 +40,7 @@ def run():
         # window.fill((255, 0, 0))
         # pygame.draw.rect(window, (255, 255, 255), (145, 95, 110, 110))
         window.blit(background_image, [210 - p.x, 160 - p.y])
-        if p.moveleft == True:
+        if p.isleft == True:
             window.blit(pygame.transform.flip(p.pictures[int(count / 5) % 6], True, False), (200 - 20, 150 - 70))
         else:
             window.blit(p.pictures[int(count / 5) % 6], (200 - 20, 150 - 70))

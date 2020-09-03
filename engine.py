@@ -42,6 +42,7 @@ class Player:
         self.done = False
         self.pictures = []
         self.moving = False
+        self.isleft=False
         picture = pg.image.load("1.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
         picture = pg.image.load("2.png")
@@ -84,7 +85,10 @@ class Player:
             self.moving = True
         else:
             self.moving = False
-
+        if self.moveleft==True:
+            self.isleft=True
+        if self.moveright==True:
+            self.isleft=False
 
 class Object:
     def __init__(self, name, loc):
