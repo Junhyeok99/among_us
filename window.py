@@ -12,8 +12,8 @@ FPS = 60
 FramePerSec = pygame.time.Clock()
 
 # window size parameter
-WIDTH = 1000
-HEIGHT = 1000
+WIDTH = 400
+HEIGHT = 300
 
 # Setup display with caption
 window = pygame.display.set_mode((WIDTH, HEIGHT))
