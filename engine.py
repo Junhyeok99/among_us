@@ -1,11 +1,14 @@
-import pygame as pg
-from setting import *
-import numpy as np
 import os
+import random
+import numpy as np
+import pygame as pg
+
+from setting import *
 
 fname = os.path.join("map.data")
 bm = np.loadtxt(fname)
 bm = bm.reshape(1000, 1000)
+
 
 def calc_dist(p, objs):
     for o in objs:
@@ -13,6 +16,8 @@ def calc_dist(p, objs):
             o.color=RED
         else:
             o.color=WHITE
+
+
 def update(p):
     p.events()
     x = p.x
@@ -48,6 +53,7 @@ class Player:
         self.pictures = []
         self.moving = False
         self.isleft = False
+        self.missions = random.sample({1, 2, 3, 4, 5, 6}, 2)
         picture = pg.image.load("1.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
         picture = pg.image.load("2.png")
@@ -60,6 +66,7 @@ class Player:
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
         picture = pg.image.load("6.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
+
 
     def events(self):
         for event in pg.event.get():
