@@ -2,7 +2,7 @@ import sys
 import pygame
 
 from pygame.locals import *
-from engine import Player, Object, update
+from engine import *
 
 # Initialize program
 pygame.init()
@@ -37,6 +37,7 @@ def run():
                 pygame.quit()
                 sys.exit()
         update(p)
+        calc_dist(p, objs)
         # window.fill((255, 0, 0))
         # pygame.draw.rect(window, (255, 255, 255), (145, 95, 110, 110))
         window.blit(background_image, [210 - p.x, 160 - p.y])

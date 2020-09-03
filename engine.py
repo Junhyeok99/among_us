@@ -7,7 +7,12 @@ fname = os.path.join("map.data")
 bm = np.loadtxt(fname)
 bm = bm.reshape(1000, 1000)
 
-
+def calc_dist(p, objs):
+    for o in objs:
+        if (p.x-o.location[0])**2+(p.y-o.location[1])**2 < 10000:
+            o.color=RED
+        else:
+            o.color=WHITE
 def update(p):
     p.events()
     x = p.x
