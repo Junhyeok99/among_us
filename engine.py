@@ -5,7 +5,7 @@ import os
 
 fname = os.path.join("map.data")
 bm = np.loadtxt(fname)
-bm = bm.reshape(300, 400)
+bm = bm.reshape(1000, 1000)
 
 
 def update(p):
