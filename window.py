@@ -19,7 +19,7 @@ HEIGHT = 300
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 pygame.display.set_caption("Among us")
-background_image=pygame.image.load("map.jpg")
+background_image=pygame.image.load("map.png")
 #background_image=pygame.transform.scale(background_image, (400, 300))
 
 p = player()
