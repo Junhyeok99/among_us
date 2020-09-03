@@ -2,7 +2,7 @@ import sys
 import pygame
 
 from pygame.locals import *
-from engine import player, update
+from engine import Player, Object, update
 
 # Initialize program
 pygame.init()
@@ -22,8 +22,8 @@ pygame.display.set_caption("Among us")
 background_image=pygame.image.load("map.png")
 #background_image=pygame.transform.scale(background_image, (400, 300))
 
-p = player()
-
+p = Player()
+o = Object("test", (150, 150))
 
 def run():
     # Beginning Game Loop
@@ -39,5 +39,6 @@ def run():
         #pygame.draw.rect(window, (255, 255, 255), (145, 95, 110, 110))
         window.blit(background_image, [200-p.x, 150-p.y])
         window.blit(p.picture, (200-48, 150-31))
+        pygame.draw.rect(window, (0, 0, 255), (o.location[0], o.location[1], 10, 10))
         pygame.display.flip()
         FramePerSec.tick(FPS)

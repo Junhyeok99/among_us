@@ -30,7 +30,7 @@ def update(p):
         p.x = x
 
 
-class player:
+class Player:
     def __init__(self):
         self.moveleft = False
         self.moveright = False
@@ -42,7 +42,7 @@ class player:
         self.done = False
         picture=pg.image.load("character.png")
         self.picture=pg.transform.scale(picture, (96, 62))
-       # self.picture=self.picture.convert()
+        self.interactive_obj = None
 
     def events(self):
         for event in pg.event.get():
@@ -69,3 +69,13 @@ class player:
         if self.done:
             pg.event.post(self.done)
             self.done = False
+
+
+class Object:
+    def __init__(self, name, loc):
+        self.name = name
+        self.mission = ""
+        self.location = loc
+
+    def interact(self):
+        print(self.name, self.location)
