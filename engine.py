@@ -40,9 +40,20 @@ class Player:
         self.y = 150
         self.speed = SPEED
         self.done = False
-        picture=pg.image.load("character.png")
-        self.picture=pg.transform.scale(picture, (96, 62))
-        self.interactive_obj = None
+        self.pictures = []
+        self.moving = False
+        picture = pg.image.load("1.png")
+        self.pictures.append(pg.transform.scale(picture, (40, 80)))
+        picture = pg.image.load("2.png")
+        self.pictures.append(pg.transform.scale(picture, (40, 80)))
+        picture = pg.image.load("3.png")
+        self.pictures.append(pg.transform.scale(picture, (40, 80)))
+        picture = pg.image.load("4.png")
+        self.pictures.append(pg.transform.scale(picture, (40, 80)))
+        picture = pg.image.load("5.png")
+        self.pictures.append(pg.transform.scale(picture, (40, 80)))
+        picture = pg.image.load("6.png")
+        self.pictures.append(pg.transform.scale(picture, (40, 80)))
 
     def events(self):
         for event in pg.event.get():
@@ -69,6 +80,10 @@ class Player:
         if self.done:
             pg.event.post(self.done)
             self.done = False
+        if self.moveleft == True or self.moveright == True or self.moveup == True or self.movedown == True:
+            self.moving = True
+        else:
+            self.moving = False
 
 
 class Object:
