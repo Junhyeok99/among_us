@@ -19,7 +19,7 @@ def calc_dist(p, objs):
 
 
 def update(p):
-    p.events()
+
     x = p.x
     y = p.y
     if p.moveleft and bm[p.y, p.x]:
@@ -53,22 +53,23 @@ class Player:
         self.pictures = []
         self.moving = False
         self.isleft = False
+        self.is_mission=False
         self.missions = random.sample({0, 1, 2, 3, 4, 5}, 2)
-        picture = pg.image.load("1.png")
+        picture = pg.image.load("contents/character/1.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
-        picture = pg.image.load("2.png")
+        picture = pg.image.load("contents/character/2.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
-        picture = pg.image.load("3.png")
+        picture = pg.image.load("contents/character/3.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
-        picture = pg.image.load("4.png")
+        picture = pg.image.load("contents/character/4.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
-        picture = pg.image.load("5.png")
+        picture = pg.image.load("contents/character/5.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
-        picture = pg.image.load("6.png")
+        picture = pg.image.load("contents/character/6.png")
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
 
 
-    def events(self):
+    def events(self, is_close):
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.done = event
@@ -83,8 +84,8 @@ class Player:
                     self.movedown = True
                 if event.key == pg.K_UP:
                     self.moveup = True
-                if event.key == pg.K_SPACE:
-                    print(self.x, self.y)
+                if event.key == pg.K_SPACE and is_close:
+                    self.is_mission=True
             if event.type == pg.KEYUP:
                 if event.key == pg.K_LEFT:
                     self.moveleft = False
@@ -94,6 +95,7 @@ class Player:
                     self.movedown = False
                 if event.key == pg.K_UP:
                     self.moveup = False
+
         if self.done:
             pg.event.post(self.done)
             self.done = False
@@ -114,11 +116,13 @@ class Player:
                     i.set_at((x, y), (min(255, origin[0] + 150), origin[1], min(255, origin[2] + 150), origin[3]))
 
 class Object:
-    def __init__(self, name, loc):
+    def __init__(self, name, loc, mission_num):
         self.name = name
         self.mission = ""
         self.location = loc
         self.color = WHITE
-
+        self.is_clear=False
+        self.count=0
+        self.mission_num=mission_num
     def interact(self):
         print(self.name, self.location)
