@@ -31,6 +31,9 @@ objs = [
     Object("4-1", (660, 700), 5),
     Object("4-2", (660, 460), 6),
 ]
+fname = os.path.join("map.data")
+bm = np.loadtxt(fname)
+bm = bm.reshape(1000, 1000)
 
 def run():
     # Beginning Game Loop
@@ -48,7 +51,7 @@ def run():
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
-        update(p)
+        update(p, bm)
 
         #calculate distance and is_clear to check whether we can start a mission
         calc_dist(p, objs)
@@ -69,15 +72,21 @@ def run():
         for o in objs:
             if o.color==RED and p.is_mission:
                 if o.mission_num==1:
+                    pygame.draw.rect(window, (0, 0, 0, 0.2), (100, 100,300, 300 ))
+                    pygame.draw.rect(window, YELLOW, (100, 100, o.count, 300 ))
                     filling_fuel(p,o)
                 elif o.mission_num==2:
+                    pygame.draw.rect(window, (0, 0, 0, 0.2), (100, 100, 300, 300))
+                    pygame.draw.rect(window, YELLOW, (100, 100, o.count, 300))
                     trashing(p, o)
                 elif o.mission_num==3:
-                    p.is_mission = False
-                    pass
+                    pygame.draw.rect(window, (0, 0, 0, 0.2), (100, 100, 300, 300))
+                    pygame.draw.rect(window, YELLOW, (100, 100, o.count, 300))
+                    data_download(p,o)
+
                 elif o.mission_num==4:
-                    p.is_mission = False
-                    pass
+                    maze(window, p,o)
+
                 elif o.mission_num==5:
                     p.is_mission = False
                     pass

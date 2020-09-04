@@ -5,9 +5,7 @@ import pygame as pg
 
 from setting import *
 
-fname = os.path.join("map.data")
-bm = np.loadtxt(fname)
-bm = bm.reshape(1000, 1000)
+
 
 
 def calc_dist(p, objs):
@@ -18,7 +16,7 @@ def calc_dist(p, objs):
             o.color=WHITE
 
 
-def update(p):
+def update(p,bm):
 
     x = p.x
     y = p.y
@@ -41,14 +39,14 @@ def update(p):
 
 
 class Player:
-    def __init__(self):
+    def __init__(self, _x=200, _y=150, _speed=SPEED):
         self.moveleft = False
         self.moveright = False
         self.moveup = False
         self.movedown = False
-        self.x = 200
-        self.y = 150
-        self.speed = SPEED
+        self.x = _x
+        self.y = _y
+        self.speed = _speed
         self.done = False
         self.pictures = []
         self.moving = False
@@ -69,7 +67,7 @@ class Player:
         self.pictures.append(pg.transform.scale(picture, (40, 80)))
 
 
-    def events(self, is_close):
+    def events(self, is_close=False):
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.done = event
@@ -124,5 +122,6 @@ class Object:
         self.is_clear=False
         self.count=0
         self.mission_num=mission_num
+        self.maze_player=Player(1, 1, 1)
     def interact(self):
         print(self.name, self.location)
