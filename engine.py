@@ -75,6 +75,8 @@ class Player:
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_LEFT:
                     self.moveleft = True
+                if event.key == pg.K_a:
+                    self.change_color()
                 if event.key == pg.K_RIGHT:
                     self.moveright = True
                 if event.key == pg.K_DOWN:
@@ -104,6 +106,12 @@ class Player:
         if self.moveright:
             self.isleft = False
 
+    def change_color(self):
+        for i in self.pictures:
+            for x in range(i.get_size()[0]):
+                for y in range(i.get_size()[1]):
+                    origin = i.get_at((x, y))
+                    i.set_at((x, y), (min(255, origin[0] + 150), origin[1], min(255, origin[2] + 150), origin[3]))
 
 class Object:
     def __init__(self, name, loc):
